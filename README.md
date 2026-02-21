@@ -4,7 +4,7 @@
 
 ## 项目结构
 
-'''
+```
 project/
 ├── models/
 │   ├── diffusion_model.py      # E(3)-等变扩散网络与多任务预测头
@@ -22,4 +22,4 @@ project/
 │   └── vis.py                  # 结果可视化引擎
 ├── README.md                   # 项目说明文档
 └── results/                    # 运行生成的图表与结构输出目录
-'''
+```

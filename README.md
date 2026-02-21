@@ -25,5 +25,13 @@ project/
 ```
 
 ## 结果整体可视化分析
-
+### 1. ΔG_H性能图
 ![ΔG_H性能图](./results/her_performance.png)
+### 2. 稳定性与合成性评估曲线
+![稳定性与合成性评估曲线](./results/stability_curve.png)
+### 3. 生成的材料结构图
+![生成的材料结构图](./results/generated_structures.png)
+
+## 与baseline的对比（通过MatterSim、CSLLM、DimeNet++统一评定三项指标）
+baseline生成的材料保存在results_external文件夹中，评估结果通过evaluate_external.py给出。我的评估结果在运行test.py会自动给出。虽然是通过两个代码实现，但是采用的方法和模型均为一致。
+<img width="554" height="389" alt="数据对比表" src="https://github.com/user-attachments/assets/d3164405-1173-4952-8e9c-4aa9feac9788" />

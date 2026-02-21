@@ -51,17 +51,27 @@ $$\mathbf{x}_{t-1}=\frac{1}{\sqrt{\alpha_t}}\left(\mathbf{x}_t-\frac{1-\alpha_t}
 $$\Delta G_{H^*}\approx\Delta E_{H^*}+\Delta E_{ZPE}-T\Delta S_{H^*}\approx\Delta E_{H^*}+0.27\text{ eV}$$
 
 ## 实验参数表
+<img width="813" height="534" alt="实验参数表" src="https://github.com/user-attachments/assets/bc3e0aa2-c4df-440f-967b-16fdfdfbc06b" />
 
-Parameter Category,Parameter Name,Value / Setting,Description
-Data & Features,Dataset Source,C2DB (filtered),"2D materials only, < 60 atoms"
-,Data Augmentation,"Rotation, Strain (±2%)",Essential for small datasets
-Model Architecture,Backbone,E(3)-EGNN,Equivariant Graph Neural Network
-,Hidden Dimension,128,Dimension of node/edge embeddings
-Training,Diffusion Steps (T),1000,Total timesteps for noise schedule
-,Optimizer,AdamW,"Weight decay = 1e-4, LR = 1e-4"
-,CFG Probability,0.15,Prob. of dropping conditions
-,Loss Weights (λ),"λ1​=1.0,λ2​=1.0,λ3​=0.5","Weights for HER, Stab, Synth"
-Generation,Guidance Scale (η),0.05 - 0.10,Strength of gradient correction
+## 评估指标
+
+1. 平均 HER $\Delta G$ 误差 (Mean Absolute Error of $\Delta G_H$):
+
+衡量生成材料催化活性与理想值 (0 eV) 的平均偏差 。
+
+$$\text{MAE}_{\Delta G}=\frac{1}{N}\sum_{i=1}^{N}|\Delta G_{H, i}^{pred}-0|$$
+
+2. 稳定性得分 (Stability Score):
+
+基于机器学习力场 (MatterSim) 预测的形成能 $E_{form}$ 计算的归一化得分 。
+
+$$\text{Score}_{stab}=\frac{1}{N}\sum_{i=1}^{N}\exp(-\max(0,E_{form, i}-E_{stable}^{ref}))$$
+
+3. 合成成功率 (Synthesis Success Rate):
+
+基于材料大模型 (CSLLM) 预测判定为“可合成”的材料占比 。
+
+$$\text{Rate}_{synth}=\frac{\text{Count}(\text{Predicted as Synthesizable})}{N}\times100\%$$
 
 ## 创新点说明
 

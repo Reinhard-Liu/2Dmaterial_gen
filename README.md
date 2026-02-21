@@ -26,4 +26,4 @@ project/
 
 ## 结果整体可视化分析
 
-
+![ΔG_H性能图](./results/her_performance.png)

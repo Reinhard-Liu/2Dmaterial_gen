@@ -7,170 +7,60 @@
 baseline链接：https://github.com/deamean/material_generation?tab=readme-ov-file#2-materials-project-api%E5%AF%86%E9%92%A5
 
 ## 项目结构
+```mermaid
+flowchart TD
+    %% ================= 样式定义 (Material Design 色系) =================
+    classDef data fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1,rx:8px,ry:8px;
+    classDef process fill:#FFF3E0,stroke:#EF6C00,stroke-width:2px,color:#E65100,rx:8px,ry:8px;
+    classDef model fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20,rx:8px,ry:8px;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C,rx:8px,ry:8px;
 
-```
-project/
-├── models/
-│   ├── diffusion_model.py      # E(3)-等变扩散网络与多任务预测头
-│   ├── structure_generator.py  # 基于真实模板与梯度引导的采样器
-│   ├── dimnet_model.py         # DimeNet++ 表面吸附能预测模型 (HER伪标签)
-│   └── optimization.py         # 多任务联合损失函数与学习率调度器
-├── dataset/
-│   └── material_dataset.py     # C2DB 图数据集构建与 2D-PBC 约束处理
-├── train.py                    # 模型多任务联合训练主入口
-├── test.py                     # 靶向生成、评估流水线与交付主入口
-├── evaluate_external.py        # 外部材料的CIF批量评估脚本
-├── pretrain_dimenet.py         # DimeNet++ 预训练脚本
-├── utils/
-│   ├── geo_utils.py            # 材料稳定性计算、HER性能评估
-│   └── vis.py                  # 结果可视化引擎
-├── README.md                   # 项目说明文档
-└── results/                    # 运行生成的图表与结构输出目录
-```
-
-## 模型结构
-```
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#fff', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f4f4f4'}}}%%
-graph LR
-    %% ==============================================================================
-    %% 样式定义区域 (Style Definitions)
-    %% ==============================================================================
-    classDef dataContainer fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5,color:#0d47a1,font-weight:bold;
-    classDef dbContainer fill:#bbdefb,stroke:#1565c0,stroke-width:2px,shape:cyl,color:#0d47a1,font-weight:bold;
-    classDef processAlgorithm fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,rx:15,ry:15,color:#e65100;
-    classDef aiModel fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px,rx:5,ry:5,color:#1b5e20,font-weight:bold,shape:hex;
-
-    %% ==============================================================================
-    %% 阶段 1：数据融合与伪标签生成 (Data Preparation)
-    %% ==============================================================================
-    subgraph Stage1 [Start: 阶段 1 - 数据融合与伪标签生成]
+    %% ================= 阶段一：数据准备 =================
+    subgraph Phase1 ["📊 阶段一：数据准备 (Data Preparation)"]
         direction TB
-        S1_C2DB[(C2DB 原始二维\n晶体数据库)]:::dbContainer
-        S1_OC20[(OC20 数据集)]:::dbContainer
-        
-        S1_Pretrain(DimeNet++ 预训练):::processAlgorithm
-        S1_DimeNet_Pre{{DimeNet++\n(预训练模型)}}:::aiModel
-        
-        S1_DataClean(数据清洗 &\n提取原子特征/坐标):::processAlgorithm
-        S1_Constraint2D(应用 2D-PBC 约束):::processAlgorithm
-        
-        S1_DimeNet_Infer{{DimeNet++\n(推理模式)}}:::aiModel
-        S1_LabelCalc(标签计算转换\nΔE_H → ΔG_H):::processAlgorithm
-        
-        S1_PyGData[PyG 图数据集\n(含 ΔG_H, Stability, Synth 标签)]:::dataContainer
-
-        %% Data Flow Stage 1
-        S1_OC20 -- 预训练数据 --> S1_Pretrain
-        S1_Pretrain -- 训练权重 --> S1_DimeNet_Pre
-        S1_C2DB -- data.json, structure.json --> S1_DataClean
-        S1_DataClean --> S1_Constraint2D
-        S1_Constraint2D -- 约束后的晶体结构 --> S1_DimeNet_Infer
-        S1_DimeNet_Pre -. 加载权重 .-> S1_DimeNet_Infer
-        S1_DimeNet_Infer -- 预测表面氢吸附能 ΔE_H --> S1_LabelCalc
-        S1_C2DB -- 提取 E_hull & 合成性信息 --> S1_LabelCalc
-        S1_LabelCalc -- 整合所有标签 --> S1_PyGData
-        S1_Constraint2D -- 整合几何特征 --> S1_PyGData
+        A["C2DB 原始数据<br/>(data.json / structure.json)"]:::data --> B("数据清洗与 2D 约束处理<br/>(material_dataset.py)"):::process
+        B --> C{"DimeNet++ 伪标签生成<br/>(quick_formation_screening.py)"}:::process
+        C -- "预测 ΔE_H" --> D["带标签的 PyG 图数据集<br/>(processed/*.pt)"]:::data
     end
 
-    %% ==============================================================================
-    %% 阶段 2：等变扩散模型训练 (Model Training)
-    %% ==============================================================================
-    subgraph Stage2 [阶段 2 - 等变扩散模型训练]
+    %% ================= 阶段二：模型训练 =================
+    subgraph Phase2 ["🧠 阶段二：模型训练 (Training Phase)"]
         direction TB
-        S2_Sampler(数据采样 & 加噪过程):::processAlgorithm
-        
-        S2_EGNN_Backbone{{E(3)-EGNN\n核心骨干网络}}:::aiModel
-        
-        subgraph Heads [多任务预测头]
-            direction LR
-            S2_Head_Prop{{MLP头: ΔG_H}}:::aiModel
-            S2_Head_Stab{{MLP头: Stability}}:::aiModel
-            S2_Head_Synth{{MLP头: Synthesizability}}:::aiModel
-        end
-        
-        S2_LossCalc(联合 Loss 计算\n(去噪 + 属性) & CFG机制):::processAlgorithm
-        S2_Backprop(反向传播 & 模型更新):::processAlgorithm
-        S2_TrainedModel[训练完成的\n等变扩散模型]:::dataContainer
-
-        %% Data Flow Stage 2
-        S1_PyGData ====> S2_Sampler
-        S2_Sampler -- 加噪坐标 x_t, 时间步 t, 条件 c --> S2_EGNN_Backbone
-        S2_EGNN_Backbone -- 潜层特征 --> Heads
-        S2_EGNN_Backbone -- 预测噪声 ε_θ --> S2_LossCalc
-        S2_Head_Prop -- 预测 ΔG_H --> S2_LossCalc
-        S2_Head_Stab -- 预测 E_hull --> S2_LossCalc
-        S2_Head_Synth -- 预测合成性 --> S2_LossCalc
-        S1_PyGData -- 真实标签 Ground Truth --> S2_LossCalc
-        S2_LossCalc -- 联合损失梯度 --> S2_Backprop
-        S2_Backprop -- 更新权重 --> S2_EGNN_Backbone
-        S2_Backprop -- 更新权重 --> Heads
-        S2_EGNN_Backbone -. 最终模型状态 .-> S2_TrainedModel
-        Heads -. 最终模型状态 .-> S2_TrainedModel
+        D --> E("E3-EGNN 扩散模型骨干<br/>(diffusion_model.py)"):::model
+        D --> F("多任务属性预测头<br/>(HER / Stability / Synth)"):::model
+        E --> G{"联合损失函数计算<br/>(optimization.py)"}:::process
+        F --> G
+        G -. "反向传播优化" .-> E
+        G -. "反向传播优化" .-> F
     end
 
-    %% ==============================================================================
-    %% 阶段 3：靶向智能生成 (Target-Driven Generation)
-    %% ==============================================================================
-    subgraph Stage3 [阶段 3 - 靶向智能生成 (核心创新)]
+    %% ================= 阶段三：靶向生成 =================
+    subgraph Phase3 ["🎯 阶段三：靶向生成 (Target-Driven Generation)"]
         direction TB
-        S3_TemplateLib[(真实二维材料\n化学计量比模板库)]:::dbContainer
-        S3_InitNoise(初始化: 采样配比 & \n高斯噪声 x_T):::processAlgorithm
+        H["高斯噪声 x_T"]:::data --> I("结构生成器<br/>(structure_generator.py)"):::process
+        I -- "1. EGNN 去噪预测" --> J["中间状态 x_t"]:::data
         
-        S3_ReverseDiff_Loop(逆向扩散循环\nStep t → t-1):::processAlgorithm
+        %% 独立推理节点，避免跨子图连线导致画面杂乱
+        J -- "2. 计算属性梯度 ∇L" --> F_infer("调用多任务属性预测头"):::model
+        F_infer -- "3. 梯度回传指导修正" --> I
         
-        S3_EGNN_Frozen{{已训练 EGNN\n(冻结参数)}}:::aiModel
-        
-        S3_GradientGuide(梯度制导计算\n∇|ΔG_H| + E_stab):::processAlgorithm
-        S3_ConstraintEnforce(强制施加 2D 约束\nZ轴零梯度 + XY边界):::processAlgorithm
-        
-        S3_GeneratedCIF[生成的候选\n.cif 结构文件]:::dataContainer
-
-        %% Data Flow Stage 3
-        S2_TrainedModel ====> S3_EGNN_Frozen
-        S3_TemplateLib -- 采样模板 --> S3_InitNoise
-        S3_InitNoise --> S3_ReverseDiff_Loop
-        
-        %% The Generation Loop
-        S3_ReverseDiff_Loop -- 当前噪声结构 x_t & t --> S3_EGNN_Frozen
-        S3_EGNN_Frozen -- 预测去噪项 & 属性梯度 --> S3_GradientGuide
-        S3_GradientGuide -- 计算目标导向梯度，修正方向 --> S3_ConstraintEnforce
-        S3_ConstraintEnforce -- 物理约束后的更新结构 x_{t-1} --> S3_ReverseDiff_Loop
-        
-        S3_ReverseDiff_Loop -- 最终去噪结构 (t=0) --> S3_GeneratedCIF
+        I -. "4. 更新坐标并循环 T 步" .-> J
+        J ===> K["最终生成的 2D 结构<br/>(.cif files)"]:::output
     end
 
-    %% ==============================================================================
-    %% 阶段 4：指标评估与交付 (Evaluation & Delivery)
-    %% ==============================================================================
-    subgraph Stage4 [End: 阶段 4 - 指标评估与交付]
+    %% ================= 阶段四：评估与可视化 =================
+    subgraph Phase4 ["📈 阶段四：评估与可视化 (Evaluation)"]
         direction TB
-        S4_FullStackEval(全栈评估器\nWorkflow):::processAlgorithm
-        
-        S4_Eval_DimeNet{{DimeNet++\n(HER 活性评估)}}:::aiModel
-        S4_Eval_MatterSim{{MatterSim MLFF\n(弛豫 & 稳定性评估)}}:::aiModel
-        S4_Eval_CSLLM{{CSLLM 大语言模型\n(合成成功率评估)}}:::aiModel
-        
-        S4_VizReport[可视化分布图\n& 对比评估报告]:::dataContainer
-
-        %% Data Flow Stage 4
-        S3_GeneratedCIF ====> S4_FullStackEval
-        S4_FullStackEval -- 1. 调用结构 --> S4_Eval_DimeNet
-        S4_FullStackEval -- 2. 调用结构 --> S4_Eval_MatterSim
-        S4_FullStackEval -- 3. 调用信息 --> S4_Eval_CSLLM
-        
-        S4_Eval_DimeNet -- 平均 ΔG_H --> S4_VizReport
-        S4_Eval_MatterSim -- 稳定性分数 & 弛豫后结构 --> S4_VizReport
-        S4_Eval_CSLLM -- 合成概率评分 --> S4_VizReport
+        K --> L("全栈评估器<br/>(geo_utils.py / test.py)"):::process
+        L -- "MatterSim / CSLLM / DimeNet" --> M["可视化图表与指标报告<br/>(results/*.png)"]:::output
     end
 
-    %% 主要阶段之间的粗箭头连接，体现宏观流转
-    S1_PyGData ==> S2_Sampler
-    S2_TrainedModel ==> S3_EGNN_Frozen
-    S3_GeneratedCIF ==> S4_FullStackEval
-
-    %% 样式调整补充
-    linkStyle default stroke-width:2px,fill:none,stroke:gray;
+    %% ================= 跨阶段层级约束 (保持整体从上到下的整洁排版) =================
+    Phase1 ~~~ Phase2
+    Phase2 ~~~ Phase3
+    Phase3 ~~~ Phase4
 ```
+
 ## 原理与公式
 
 1. 多任务联合训练损失 (Multi-Task Training Loss)

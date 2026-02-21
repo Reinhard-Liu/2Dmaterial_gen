@@ -49,7 +49,7 @@ $$\mathbf{x}_{t-1}=\frac{1}{\sqrt{\alpha_t}}\left(\mathbf{x}_t-\frac{1-\alpha_t}
 采用以下物理近似计算析氢反应的吉布斯自由能:
 
 $$
-\Delta G_{\text{H}^*} \approx \Delta E_{\text{H}^*} + \Delta E_{\text{ZPE}} - T\Delta S_{\text{H}^*} \approx \Delta E_{\text{H}^*} + 0.27 \, \text{eV}
+\Delta G_{H^\ast} \approx \Delta E_{H^\ast} + \Delta E_{ZPE} - T\Delta S_{H^\ast} \approx \Delta E_{H^\ast} + 0.27 \text{ eV}
 $$
 
 其中 $\Delta E_{H^*}$ 由预训练的 DimeNet++ 模型预测。

@@ -1,0 +1,33 @@
+data_image0
+_chemical_formula_structural       AlIrGaIrGaAlIr2
+_chemical_formula_sum              "Al2 Ir4 Ga2"
+_cell_length_a       5.247043253752649
+_cell_length_b       5.247195723138271
+_cell_length_c       5.245553493499756
+_cell_angle_alpha    109.52764265203483
+_cell_angle_beta     109.47754106290914
+_cell_angle_gamma    109.6350535025105
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Al  Al1       1.0  0.7788491243223684  0.4580572850357577  0.6792939308131123  1.0000
+  Ir  Ir1       1.0  0.7787596579997064  0.9588759540959302  0.6794954543762696  1.0000
+  Ga  Ga1       1.0  0.7782949200479922  0.9580823777038182  0.17868338516654592  1.0000
+  Ir  Ir2       1.0  0.7785228483378565  0.45831802501098656  0.17921313639214517  1.0000
+  Ga  Ga2       1.0  0.2789007432935063  0.9588029983955005  0.6793072814233146  1.0000
+  Al  Al2       1.0  0.2787497032298717  0.4588439754583264  0.1788271810986984  1.0000
+  Ir  Ir3       1.0  0.2785252629630992  0.4587591296405343  0.6791413419158351  1.0000
+  Ir  Ir4       1.0  0.2786205121794996  0.9589039684295344  0.179094731985125  1.0000

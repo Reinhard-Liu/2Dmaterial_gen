@@ -1,0 +1,32 @@
+# 创建虚拟环境 (可选)
+conda create -n material_gen python=3.10
+conda activate material_gen
+
+# 安装PyTorch Geometric (根据系统和CUDA版本可能需要调整)
+pip install torch-scatter torch-sparse torch-cluster torch-spline-conv -f https://data.pyg.org/whl/torch-2.0.0+${CUDA}.html
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 安装E3NN (可选，用于SE(3)等变网络)
+pip install e3nn
+
+# windows环境下载OCD数据库
+curl.exe -O https://dl.fbaipublicfiles.com/opencatalystproject/data/is2res_train_val_test_lmdbs.tar.gz
+# 安装所需库
+pip install tensorboard
+
+#1.验证虚拟环境是否满足要求
+python check_env.py
+
+#2.使用OCP10k数据集对DimeNet++进行预训练
+python pretrain_dimenet.py
+
+#3.把 C2DB 的属性数据和 DimeNet++ (已在 OCP 上预训练) 预测的表面氢吸附能融合，构建出供扩散模型学习的图数据集
+python dataset/material_dataset.py
+
+#4.联合训练扩散生成模型
+python train.py
+
+#5.生成2D材料并形成报告
+python test.py

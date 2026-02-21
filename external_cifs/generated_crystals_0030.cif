@@ -1,0 +1,33 @@
+data_image0
+_chemical_formula_structural       InRhNdInNdIn2Rh
+_chemical_formula_sum              "In4 Rh2 Nd2"
+_cell_length_a       4.436257839364628
+_cell_length_b       5.595765127747863
+_cell_length_c       8.088607788085938
+_cell_angle_alpha    89.99595903278413
+_cell_angle_beta     89.99951073083099
+_cell_angle_gamma    112.97328095029678
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  In  In1       1.0  0.8775979883864624  0.4193241588484986  0.9074299936799198  1.0000
+  Rh  Rh1       1.0  0.016986042760736876  0.696876882791658  0.6063468456104271  1.0000
+  Nd  Nd1       1.0  0.16460832839929931  0.9929311871210248  0.10651217457611893  1.0000
+  In  In2       1.0  0.8774559497880088  0.41890752226724404  0.30555918751220446  1.0000
+  Nd  Nd2       1.0  0.2995142947073055  0.262864769007738  0.6065958147709408  1.0000
+  In  In3       1.0  0.5865071406100717  0.836816965748824  0.4071869251533365  1.0000
+  In  In4       1.0  0.5864219674843005  0.8367666003336095  0.8054153913485063  1.0000
+  Rh  Rh2       1.0  0.4472769195396882  0.5590541950426214  0.10638456735621483  1.0000

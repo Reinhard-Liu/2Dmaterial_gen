@@ -1,0 +1,34 @@
+data_image0
+_chemical_formula_structural       TeSnO3BaO3
+_chemical_formula_sum              "Te1 Sn1 O6 Ba1"
+_cell_length_a       5.414691567572943
+_cell_length_b       5.41593808958036
+_cell_length_c       5.8202409744262695
+_cell_angle_alpha    90.01513820431889
+_cell_angle_beta     90.01203046711308
+_cell_angle_gamma    120.00417454968132
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Te  Te1       1.0  0.2686522608995308  0.8274412756025172  0.8336670405459141  1.0000
+  Sn  Sn1       1.0  0.6016479133520175  0.49402350208266355  0.8336505287558831  1.0000
+  O   O1        1.0  0.5422080754372303  0.7870086425013385  0.6399282815404874  1.0000
+  O   O2        1.0  0.30895847080040717  0.5535803441291142  0.027911421930405036  1.0000
+  O   O3        1.0  0.953882336355342  0.5534951100401783  0.6396537426897293  1.0000
+  Ba  Ba1       1.0  0.9349385498271445  0.16072243504485104  0.33380344458835903  1.0000
+  O   O4        1.0  0.5423185825675331  0.1418016698232654  0.027770004766536273  1.0000
+  O   O5        1.0  0.9542471759457493  0.7870568030877123  0.027779223230899232  1.0000
+  O   O6        1.0  0.30885481806369786  0.14172118825544816  0.6395116454669891  1.0000

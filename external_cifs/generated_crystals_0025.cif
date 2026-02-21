@@ -1,0 +1,33 @@
+data_image0
+_chemical_formula_structural       Hg2AsRbAsRbRh2
+_chemical_formula_sum              "Hg2 As2 Rb2 Rh2"
+_cell_length_a       4.20313550473395
+_cell_length_b       4.202199515310991
+_cell_length_c       13.131263732910156
+_cell_angle_alpha    90.00937352391198
+_cell_angle_beta     90.00472899558189
+_cell_angle_gamma    89.97820737089803
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Hg  Hg1       1.0  0.6878962509808072  0.8815281387779422  0.7176145312363107  1.0000
+  Hg  Hg2       1.0  0.1876721224702077  0.38174661903872487  0.7176668642646283  1.0000
+  As  As1       1.0  0.687794745766566  0.3808346679725034  0.315869987316415  1.0000
+  Rb  Rb1       1.0  0.6880088458456705  0.38188478240951385  0.9644262793401069  1.0000
+  As  As2       1.0  0.1874966334667927  0.8807659140756489  0.11889903220355084  1.0000
+  Rb  Rb2       1.0  0.18771465082875516  0.8811184770897531  0.47059532982925345  1.0000
+  Rh  Rh1       1.0  0.6875562657300226  0.8808174133007001  0.21734398605739616  1.0000
+  Rh  Rh2       1.0  0.18781009378067667  0.3802749515209102  0.2176015379233794  1.0000

@@ -1,0 +1,37 @@
+data_image0
+_chemical_formula_structural       NbMgRuAsAgTcCaFeKrCrCoBe
+_chemical_formula_sum              "Nb1 Mg1 Ru1 As1 Ag1 Tc1 Ca1 Fe1 Kr1 Cr1 Co1 Be1"
+_cell_length_a       23.44268035888672
+_cell_length_b       17.359783172607422
+_cell_length_c       20.0
+_cell_angle_alpha    90.0
+_cell_angle_beta     90.0
+_cell_angle_gamma    90.0
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Nb  Nb1       1.0  0.4748714853146066  0.6499905826231777  0.6940972447395325  1.0000
+  Mg  Mg1       1.0  0.7660043564589728  0.719142042773926  0.6677575945854187  1.0000
+  Ru  Ru1       1.0  0.2387264501107991  0.17529292615326264  0.5264114797115326  1.0000
+  As  As1       1.0  0.6479837098180449  0.63695888744371  0.5196557700634002  1.0000
+  Ag  Ag1       1.0  0.22361199298722712  0.7224576543537864  0.4288874596357346  1.0000
+  Tc  Tc1       1.0  0.7358844675932631  0.14401100156171615  0.2736580610275269  1.0000
+  Ca  Ca1       1.0  0.10664311582823979  0.4491110680230985  0.28549598455429076  1.0000
+  Fe  Fe1       1.0  0.30205863311787534  0.7510460883153001  0.2467910647392273  1.0000
+  Kr  Kr1       1.0  0.49984062665673834  0.8559889984382839  0.4319714680314064  1.0000
+  Cr  Cr1       1.0  0.8933568841717603  0.722427425906381  0.22617255449295046  1.0000
+  Co  Co1       1.0  0.6002326979974153  0.8269304647374517  0.6187955498695374  1.0000
+  Be  Be1       1.0  0.5915637359938998  0.6156120207204814  0.7738274455070496  1.0000

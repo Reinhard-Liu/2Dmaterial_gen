@@ -1,0 +1,34 @@
+data_image0
+_chemical_formula_structural       TlGeTlCs3GeCsGa
+_chemical_formula_sum              "Tl2 Ge2 Cs4 Ga1"
+_cell_length_a       6.5350014688364775
+_cell_length_b       8.634957486317495
+_cell_length_c       8.916960716247559
+_cell_angle_alpha    104.10111896068898
+_cell_angle_beta     99.59234121466972
+_cell_angle_gamma    109.5459961652796
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Tl  Tl1       1.0  0.1849987660968134  0.6097152237481154  0.2490185506445673  1.0000
+  Ge  Ge1       1.0  0.8618314271423326  0.2611437738840585  0.655163883969099  1.0000
+  Tl  Tl2       1.0  0.9174353482889351  0.18250830530172965  0.9548347594059964  1.0000
+  Cs  Cs1       1.0  0.552626312580735  0.2963678244811082  0.24828882524022353  1.0000
+  Cs  Cs2       1.0  0.8123868101633216  0.9217666383490342  0.2541308701940396  1.0000
+  Cs  Cs3       1.0  0.5290973188887114  0.6074627638440944  0.720834136114412  1.0000
+  Ge  Ge2       1.0  0.2249827239384038  0.8209608787976045  0.028814697468031104  1.0000
+  Cs  Cs4       1.0  0.2749322059376581  0.010734278746990369  0.6862219571164098  1.0000
+  Ga  Ga1       1.0  0.036626230308881486  0.5128275152595912  0.8975297210130743  1.0000

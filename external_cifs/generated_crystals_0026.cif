@@ -1,0 +1,34 @@
+data_image0
+_chemical_formula_structural       SmDySmDyHo5
+_chemical_formula_sum              "Sm2 Dy2 Ho5"
+_cell_length_a       5.019762489779664
+_cell_length_b       7.943602565024121
+_cell_length_c       7.945425033569336
+_cell_angle_alpha    84.29743688164312
+_cell_angle_beta     71.58374290216473
+_cell_angle_gamma    71.58809214420125
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Sm  Sm1       1.0  0.4582669145376182  0.030581344219379757  0.41267818138629747  1.0000
+  Dy  Dy1       1.0  0.12483643071490995  0.6971198322542206  0.41269713655080187  1.0000
+  Sm  Sm2       1.0  0.4584195908403899  0.3648766879982494  0.07848547445667217  1.0000
+  Dy  Dy2       1.0  0.12513369339226899  0.36497291895360656  0.7449932102763157  1.0000
+  Ho  Ho1       1.0  0.12614187558816012  0.02982655169448117  0.07758266446012559  1.0000
+  Ho  Ho2       1.0  0.7916046390759551  0.030442432993069857  0.7459678050807576  1.0000
+  Ho  Ho3       1.0  0.7903046599579451  0.3656340545011898  0.4132615623795265  1.0000
+  Ho  Ho4       1.0  0.791613339216291  0.6984333398829097  0.07810531538750982  1.0000
+  Ho  Ho5       1.0  0.45799431216290976  0.6976741556738264  0.7460603716893381  1.0000

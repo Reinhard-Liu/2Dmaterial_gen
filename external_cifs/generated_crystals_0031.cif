@@ -1,0 +1,30 @@
+data_image0
+_chemical_formula_structural       Sc2BeSiC
+_chemical_formula_sum              "Sc2 Be1 Si1 C1"
+_cell_length_a       3.4694879107104106
+_cell_length_b       4.569983112179179
+_cell_length_c       4.571383953094482
+_cell_angle_alpha    90.03903020456818
+_cell_angle_beta     89.99686061744714
+_cell_angle_gamma    89.99503012677526
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Sc  Sc1       1.0  0.910554290174148  0.9014787670434133  0.07748613479838111  1.0000
+  Sc  Sc2       1.0  0.9102000012101177  0.401877730826507  0.5773321975963975  1.0000
+  Be  Be1       1.0  0.4104764457696673  0.4015541978259849  0.0772405202982564  1.0000
+  Si  Si1       1.0  0.4104637793068374  0.9017791161453562  0.5774512299947746  1.0000
+  C   C1        1.0  0.9105672833720138  0.40144649061920185  0.07707506413772107  1.0000

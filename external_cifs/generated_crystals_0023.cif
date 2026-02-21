@@ -1,0 +1,33 @@
+data_image0
+_chemical_formula_structural       BrTe2Br2KBr2
+_chemical_formula_sum              "Br5 Te2 K1"
+_cell_length_a       6.092475277854841
+_cell_length_b       7.196105952349178
+_cell_length_c       9.282639503479004
+_cell_angle_alpha    107.66944107244115
+_cell_angle_beta     113.49328519064646
+_cell_angle_gamma    93.4020237138529
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Br  Br1       1.0  0.6154298194711529  0.5485913759826863  0.822619319612783  1.0000
+  Te  Te1       1.0  0.44939425517810105  0.17034617128140175  0.5157555340474601  1.0000
+  Te  Te2       1.0  0.9111480112284631  0.29295951163219447  0.748912632358448  1.0000
+  Br  Br2       1.0  0.3987973924179503  0.8231885426266106  0.2926676566111253  1.0000
+  Br  Br3       1.0  0.7557864785484368  0.36553090883752626  0.428069472916691  1.0000
+  K   K1        1.0  0.5141915074327557  0.011772837336273696  0.03758156639090209  1.0000
+  Br  Br4       1.0  0.17185719318725687  0.9926233894583685  0.6411857012543024  1.0000
+  Br  Br5       1.0  0.009169334276476584  0.20024014981643776  0.019842146253443726  1.0000

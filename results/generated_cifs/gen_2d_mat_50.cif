@@ -1,0 +1,37 @@
+data_image0
+_chemical_formula_structural       SiTiClMgCaRbAlCrSrGeArBe
+_chemical_formula_sum              "Si1 Ti1 Cl1 Mg1 Ca1 Rb1 Al1 Cr1 Sr1 Ge1 Ar1 Be1"
+_cell_length_a       15.04709243774414
+_cell_length_b       17.261764526367188
+_cell_length_c       20.0
+_cell_angle_alpha    90.0
+_cell_angle_beta     90.0
+_cell_angle_gamma    90.0
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Si  Si1       1.0  0.3349861864796724  0.8551712510176642  0.27159232497215274  1.0000
+  Ti  Ti1       1.0  0.3115862605067049  0.45866244095668834  0.2507457792758942  1.0000
+  Cl  Cl1       1.0  0.7141936218866499  0.14482874898233572  0.5324948966503144  1.0000
+  Mg  Mg1       1.0  0.8338549291989743  0.7027208348029245  0.7492542207241059  1.0000
+  Ca  Ca1       1.0  0.16614507080102572  0.22841119459420278  0.2932020008563995  1.0000
+  Rb  Rb1       1.0  0.5859835985440505  0.5976001769476171  0.31588285565376284  1.0000
+  Al  Al1       1.0  0.6357146967248584  0.3431613002832222  0.6412784516811372  1.0000
+  Cr  Cr1       1.0  0.8302617818965877  0.2787861696222024  0.374696096777916  1.0000
+  Sr  Sr1       1.0  0.6564438436350062  0.5055947294604192  0.7440710484981538  1.0000
+  Ge  Ge1       1.0  0.3236105829502054  0.5968330061559296  0.41958009712398053  1.0000
+  Ar  Ar1       1.0  0.21588388466993957  0.5004188749207746  0.5108110845088959  1.0000
+  Be  Be1       1.0  0.7394276103718971  0.4029566050858241  0.6391009986400604  1.0000

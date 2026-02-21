@@ -1,0 +1,33 @@
+data_image0
+_chemical_formula_structural       AlYIrAl5
+_chemical_formula_sum              "Al6 Y1 Ir1"
+_cell_length_a       4.166304440837909
+_cell_length_b       4.16383635560608
+_cell_length_c       8.691283226013184
+_cell_angle_alpha    90.04539594580721
+_cell_angle_beta     90.0449656423816
+_cell_angle_gamma    90.0571848439904
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Al  Al1       1.0  0.2863206256502893  0.7441428296160395  0.5716229681578076  1.0000
+  Y   Y1        1.0  0.7863363630344892  0.24458233958789877  0.7145255202844537  1.0000
+  Ir  Ir1       1.0  0.786276817879675  0.24391064117476444  0.21458032719116388  1.0000
+  Al  Al2       1.0  0.28639262878290944  0.2440151122241321  0.37867444789170446  1.0000
+  Al  Al3       1.0  0.28605115530856406  0.7440213550027748  0.8578552601529069  1.0000
+  Al  Al4       1.0  0.7861136793167874  0.7439763555992804  0.05044382078963728  1.0000
+  Al  Al5       1.0  0.28619977943776953  0.24365226865906164  0.05056983279149249  1.0000
+  Al  Al6       1.0  0.7863605012526917  0.7442541116974993  0.3786229491407213  1.0000

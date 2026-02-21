@@ -1,0 +1,63 @@
+# === 机器学习与大数据集 (避开 GitHub 100MB 限制) ===
+dataset/
+data/
+*.db
+*.pt
+*.pth
+*.lmdb
+*.npy
+*.npz
+*.h5
+*.tar.gz
+*.zip
+
+# === Python 编译与缓存 ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === 虚拟环境 (非常重要，不要上传几万个依赖包) ===
+venv/
+.venv/
+env/
+.env
+bin/
+include/
+lib/
+obj/
+
+# === 深度学习框架缓存 (如 PyTorch, Jupyter) ===
+.ipynb_checkpoints
+.pytest_cache/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# === 系统与编辑器文件 ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

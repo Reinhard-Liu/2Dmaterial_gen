@@ -1,0 +1,17 @@
+指令集 command.txt
+环境检查脚本 (check_env.py)
+引入和初始化DimeNet++： dimnet_model.py
+使用OCP数据库对DimeNet++训练： pretrain_dimnet.py
+使用DimeNet++对C2DB进行处理生成数据集： material_dataset.py
+初始化 EGNN 模型和优化器:diffusion_model.py
+使用material_dataset.py生成的数据集对模型进行训练：train.py
+多任务联合损失函数与学习率调度器:optimization.py
+使用MatterSim, CSLLM, DimeNet++对材料进行评估，生成三项指标（HER、稳定性、可合成率）：geo_utils.py
+结果分布与 3D 结构可视化引擎：vis.py
+靶向生成、评估流水线与交付主入口：test.py
+用于对baseline生成的CIF批量评估脚本：evaluate_external.py
+
+results：该文件夹存放运行生成的模型权重、数据表与可视化图像输出目录
+models/csllm:该目录保存csllm模型文件，运行项目前需将csllm放入该目录
+external_cifs：该文件夹存放baseline生成的52个材料文件
+results_external：该文件夹存放baseline通过evaluate_external.py分析评估的结果

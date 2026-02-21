@@ -1,0 +1,30 @@
+data_image0
+_chemical_formula_structural       PtLiTm2Pt
+_chemical_formula_sum              "Pt2 Li1 Tm2"
+_cell_length_a       4.141104190823649
+_cell_length_b       5.390652278875385
+_cell_length_c       5.384467124938965
+_cell_angle_alpha    65.4027899163882
+_cell_angle_beta     68.75774523915827
+_cell_angle_gamma    68.54316661325215
+
+_space_group_name_H-M_alt    "P 1"
+_space_group_IT_number       1
+
+loop_
+  _space_group_symop_operation_xyz
+  'x, y, z'
+
+loop_
+  _atom_site_type_symbol
+  _atom_site_label
+  _atom_site_symmetry_multiplicity
+  _atom_site_fract_x
+  _atom_site_fract_y
+  _atom_site_fract_z
+  _atom_site_occupancy
+  Pt  Pt1       1.0  0.45908936767285324  0.7149145608016083  0.5494607687539785  1.0000
+  Li  Li1       1.0  0.9591381551255559  0.9769366378823228  0.28729736816450946  1.0000
+  Tm  Tm1       1.0  0.1608746343431418  0.27618014883350456  0.5858253837866666  1.0000
+  Tm  Tm2       1.0  0.7577892528572211  0.6775076393531032  0.9885233055302735  1.0000
+  Pt  Pt2       1.0  0.45929109949109753  0.2386198930227042  0.025037107090617305  1.0000

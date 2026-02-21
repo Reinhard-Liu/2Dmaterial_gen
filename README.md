@@ -28,6 +28,47 @@ project/
 └── results/                    # 运行生成的图表与结构输出目录
 ```
 
+## 模型结构
+graph TD
+    %% 定义样式
+    classDef data fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    classDef process fill:#fff3e0,stroke:#ff6f00,stroke-width:2px;
+    classDef model fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
+    classDef output fill:#f3e5f5,stroke:#4a148c,stroke-width:2px;
+
+    subgraph "阶段一：数据准备 (Data Preparation)"
+        A[C2DB 原始数据<br>structure/data.json]:::data --> B(数据清洗与 2D 约束处理<br>material_dataset.py):::process
+        B --> C{DimeNet++ 伪标签生成<br>quick_formation_screening.py}:::process
+        C -- 预测 ΔE_H --> D[带标签的 PyG 图数据集<br>processed/*.pt]:::data
+    end
+
+    subgraph "阶段二：模型训练 (Training Phase)"
+        D --> E(E3-EGNN 扩散模型骨干<br>diffusion_model.py):::model
+        D --> F(多任务属性预测头<br>HER/Stability/Synth Heads):::model
+        E --> G{联合损失函数计算<br>optimization.py}:::process
+        F --> G
+        G -- 反向传播优化 --> E & F
+    end
+
+    subgraph "阶段三：靶向生成 (Target-Driven Generation)"
+        H[高斯噪声 $x_T$]:::data --> I(结构生成器<br>structure_generator.py):::process
+        I -- 1. EGNN 去噪预测 --> J[中间状态 $x_t$]
+        J -- 2. 计算属性梯度 $\nabla \mathcal{L}_{target}$ --> F
+        F -- 3. 梯度回传指导修正 --> I
+        I -- 4. 更新坐标 $x_{t-1} \leftarrow x_{t-1} - \alpha \nabla$ --> J
+        J -- 循环 T 步 --> K[最终生成的 2D 结构<br>.cif files]:::output
+    end
+
+    subgraph "阶段四：评估与可视化 (Evaluation)"
+        K --> L(全栈评估器<br>geo_utils.py / test.py):::process
+        L -- MatterSim/CSLLM/DimeNet --> M[可视化图表与指标报告<br>results/*.png]:::output
+    end
+
+    %% 连接阶段
+    B -.-> G
+    E -.-> I
+    F -.-> I
+
 ## 创新点说明
 
 本项目在底层算法和物理约束上进行了深度创新：

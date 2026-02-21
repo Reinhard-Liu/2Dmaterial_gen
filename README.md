@@ -18,44 +18,50 @@ flowchart TD
     %% ================= 阶段一：数据准备 =================
     subgraph Phase1 ["📊 阶段一：数据准备 (Data Preparation)"]
         direction TB
-        A["C2DB 原始数据<br/>(data.json / structure.json)"]:::data --> B("数据清洗与 2D 约束处理<br/>(material_dataset.py)"):::process
-        B --> C{"DimeNet++ 伪标签生成<br/>(quick_formation_screening.py)"}:::process
-        C -- "预测 ΔE_H" --> D["带标签的 PyG 图数据集<br/>(processed/*.pt)"]:::data
+        A1["OC20 数据集<br/>(data.lmdb)"]:::data --> B1("DimeNet++ 预训练<br/>(pretrain_dimenet.py)"):::process
+        B1 -- "输出权重" --> C1("预训练 DimeNet++ 模型"):::model
+        
+        A2["C2DB 数据库<br/>(c2db.db)"]:::data --> B2("数据清洗与 2D 约束处理<br/>(material_dataset.py)"):::process
+        C1 -. "推断 ΔE_H 并计算 ΔG_H" .-> B2
+        B2 ===> D["带 ΔG_H 标签的 PyG 图数据集<br/>(processed/*.pt)"]:::data
     end
 
     %% ================= 阶段二：模型训练 =================
-    subgraph Phase2 ["🧠 阶段二：模型训练 (Training Phase)"]
+    subgraph Phase2 ["🧠 阶段二：多任务联合训练 (Model Training)"]
         direction TB
-        D --> E("E3-EGNN 扩散模型骨干<br/>(diffusion_model.py)"):::model
-        D --> F("多任务属性预测头<br/>(HER / Stability / Synth)"):::model
-        E --> G{"联合损失函数计算<br/>(optimization.py)"}:::process
-        F --> G
-        G -. "反向传播优化" .-> E
-        G -. "反向传播优化" .-> F
+        D --> Model_Train("DenoisingEGNN 主模型<br/>(包含EGNN骨干与多任务预测头)"):::model
+        Model_Train -- "输出预测值" --> Loss{"联合损失计算 (CFG)<br/>(optimization.py)"}:::process
+        Loss -. "反向传播更新网络参数" .-> Model_Train
+        
+        %% 核心产物：接力棒
+        Model_Train ===> Weights["最佳模型权重文件<br/>(best_diffusion_model.pth)"]:::data
     end
 
     %% ================= 阶段三：靶向生成 =================
-    subgraph Phase3 ["🎯 阶段三：靶向生成 (Target-Driven Generation)"]
+    subgraph Phase3 ["🎯 阶段三：梯度靶向生成 (Target-Driven Generation)"]
         direction TB
-        H["高斯噪声 x_T"]:::data --> I("结构生成器<br/>(structure_generator.py)"):::process
-        I -- "1. EGNN 去噪预测" --> J["中间状态 x_t"]:::data
         
-        %% 独立推理节点，避免跨子图连线导致画面杂乱
-        J -- "2. 计算属性梯度 ∇L" --> F_infer("调用多任务属性预测头"):::model
-        F_infer -- "3. 梯度回传指导修正" --> I
+        %% 权重注入与初始化
+        Weights --> Gen_Init("结构生成器初始化<br/>(structure_generator.py)"):::process
+        Templates["真实 2D 配方模板 + 高斯噪声"]:::data --> Gen_Init
         
-        I -. "4. 更新坐标并循环 T 步" .-> J
-        J ===> K["最终生成的 2D 结构<br/>(.cif files)"]:::output
+        %% 采样与优化循环
+        Gen_Init -- "输入加噪状态 x_t" --> Model_Infer("加载权重的 DenoisingEGNN<br/>(预测结构噪声与化学属性)"):::model
+        Model_Infer -- "输出属性预测" --> Grad_Calc{"计算目标性能梯度 ∇L<br/>(∇|ΔG_H| + E_hull)"}:::process
+        Grad_Calc -. "施加 2D 约束并反向修正坐标 x_{t-1}" .-> Gen_Init
+        
+        %% 最终输出
+        Grad_Calc ===> CIFs["最终生成的高性能 2D 结构<br/>(generated_cifs/*.cif)"]:::output
     end
 
     %% ================= 阶段四：评估与可视化 =================
     subgraph Phase4 ["📈 阶段四：评估与可视化 (Evaluation)"]
         direction TB
-        K --> L("全栈评估器<br/>(geo_utils.py / test.py)"):::process
+        CIFs --> L("全栈评估器<br/>(geo_utils.py / test.py)"):::process
         L -- "MatterSim / CSLLM / DimeNet" --> M["可视化图表与指标报告<br/>(results/*.png)"]:::output
     end
 
-    %% ================= 跨阶段层级约束 (保持整体从上到下的整洁排版) =================
+    %% ================= 跨阶段层级排版约束 =================
     Phase1 ~~~ Phase2
     Phase2 ~~~ Phase3
     Phase3 ~~~ Phase4

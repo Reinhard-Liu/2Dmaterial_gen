@@ -46,9 +46,11 @@ $$\mathbf{x}_{t-1}=\frac{1}{\sqrt{\alpha_t}}\left(\mathbf{x}_t-\frac{1-\alpha_t}
 
 3. HER 吉布斯自由能近似 (HER Gibbs Free Energy)
 
-采用以下物理近似计算析氢反应的吉布斯自由能 ：
+采用以下物理近似计算析氢反应的吉布斯自由能:
 
-$$\Delta G_{H^*}\approx\Delta E_{H^*}+\Delta E_{ZPE}-T\Delta S_{H^*}\approx\Delta E_{H^*}+0.27\text{ eV}$$
+$$\Delta G_{H^*} \approx \Delta E_{H^*} + \Delta E_{ZPE} - T\Delta S_{H^*} \approx \Delta E_{H^*} + 0.27 \text{ eV}$$
+
+其中 $\Delta E_{H^*}$ 由预训练的 DimeNet++ 模型预测。
 
 ## 实验参数表
 <img width="813" height="534" alt="实验参数表" src="https://github.com/user-attachments/assets/bc3e0aa2-c4df-440f-967b-16fdfdfbc06b" />
